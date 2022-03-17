@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:填写映射当前的Mapper接口，所有的增删改查的参数和返回值类型，
+		就可以直接填写缩写，不区分大小写，直接通过方法名去找类型-->
+<mapper namespace="com.mu.mapper.AccountMapper">
+    <resultMap id="account" type="com.mu.entity.Account">
+        <id property="id" column="user_id" javaType="int"/>
+        <result property="account" column="login_account" javaType="String"/>
+        <result property="pass" column="login_pass" javaType="String"/>
+        <association property="info" column="user_id" select="com.mu.mapper.UserInfoMapper.getUserInfo"/>
+        <collection property="roleList" ofType="com.mu.entity.Role" column="user_id" fetchType="lazy" select="com.mu.mapper.RoleMapper.getRoleListByUserId"/>
+    </resultMap>
+
+    <select id="getAccountByAccount" resultMap="account">
+        select * from user where login_account = #{account}
+    </select>
+
+    <insert id="accountInsert" parameterType="com.mu.entity.AccountVo" useGeneratedKeys="true" keyProperty="userId">
+        insert into user(login_account,login_pass) values (#{accountVo.loginAccount},#{accountVo.loginPass})
+    </insert>
+
+    <insert id="userInfoInsert" parameterType="com.mu.entity.AccountVo">
+        insert into user_info(user_id,user_name,user_email,user_gender,user_phone,user_status)
+        values (#{accountVo.userId},#{accountVo.userName},#{accountVo.userEmail},#{accountVo.userGender},#{accountVo.userPhone},#{accountVo.userStatus})
+    </insert>
+</mapper>

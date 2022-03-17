@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:填写映射当前的Mapper接口，所有的增删改查的参数和返回值类型，
+		就可以直接填写缩写，不区分大小写，直接通过方法名去找类型-->
+<mapper namespace="com.mu.mapper.RoleMapper">
+    <resultMap id="role" type="com.mu.entity.Role">
+        <id property="roleId" column="role_id" javaType="int" />
+        <result property="roleName" column="role_name" javaType="String" />
+    </resultMap>
+
+    <select id="getRoleListByUserId" resultMap="role">
+        select a.role_id,a.role_name from role a join user_role b on a.role_id = b.role_id where b.user_id = #{userId};
+    </select>
+    <select id="getRoleListByOperateUrl" resultMap="role">
+        select * from role a join role_permission b on a.role_id = b.role_id
+                             join permission_operate c on b.permission_id = c.permission_id
+                             join operate d on c.operate_id = d.operate_id
+        where d.operate_url =#{operateUrl};
+    </select>
+    <select id="getAllRole" resultMap="role">
+        select role_id,role_name from role;
+    </select>
+</mapper>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>log</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.4.6.1.css}">
+    <script th:src="@{/js/bootstrap.bundle.min.4.6.1.js}"></script>
+    <script th:src="@{/js/jquery-3.6.0.js}"></script>
+    <script th:src="@{/js/jquery.slim.min.3.5.1.js}"></script>
+    <script th:src="@{/js/popper.min.1.16.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.4.6.1.js}"></script>
+    <style>
+        body {
+            background-image: url("/img/2053449.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .container{
+            position: fixed;
+            left: 1200px;
+            top: 200px;
+        }
+        .submit{
+            position: relative;
+            left: 430px;
+        }
+        .register{
+            position: relative;
+            left: 210px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card w-50">
+            <img th:src="@{/img/2052902.jpg}" class="card-img-top" alt=" ">
+            <div class="card-body">
+                <form th:method="post" th:action="@{/administrator/doLogIn}">
+                    <div class="form-group">
+                        <label for="account">Account :</label>
+                        <input type="text" class="form-control" id="account" aria-describedby="text" name="account">
+                        <small id="text" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="pass">Password:</label>
+                        <input type="password" class="form-control" id="pass" name="pass">
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <hr/>
+                    <button type="submit" class="btn btn-info submit">Submit</button>
+                    <a th:href="@{/administrator/register}" class="btn btn-info register">register</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>文件预览及下载</h3>
+
+    <div class="container">
+        <div class="card w-50">
+            <div class="card-body">
+                <form th:method="post" th:action="@{/file/download}">
+                    <div class="form-group">
+                        <label for="filePath">filePath :</label>
+                        <input type="url" class="form-control" id="filePath" aria-describedby="text" name="path">
+                    </div>
+                    <div class="form-group">
+                        <label for="fileName">fileName :</label>
+                        <input type="text" class="form-control" id="fileName" aria-describedby="text" name="filename">
+                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="inline">inline :</label>-->
+<!--                        <input type="text" class="form-control" id="inline" aria-describedby="text" name="inline">-->
+<!--                    </div>-->
+
+                    <button type="submit" class="btn btn-info submit" name="inline" value="true">预览</button>
+                    <button type="submit" class="btn btn-info submit" name="inline" value="false">下载</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

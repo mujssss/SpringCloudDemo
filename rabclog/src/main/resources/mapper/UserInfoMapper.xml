@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:填写映射当前的Mapper接口，所有的增删改查的参数和返回值类型，
+		就可以直接填写缩写，不区分大小写，直接通过方法名去找类型-->
+<mapper namespace="com.mu.mapper.UserInfoMapper">
+
+    <resultMap id="userInfo" type="com.mu.entity.UserInfo">
+        <id property="infoId" column="into_id" javaType="int"/>
+        <result property="userId" column="user_id" javaType="int"/>
+        <result property="userName" column="user_name" javaType="String"/>
+        <result property="userEmail" column="user_email" javaType="String"/>
+        <result property="userGender" column="user_gender" javaType="String"/>
+        <result property="userPhone" column="user_phone" javaType="String"/>
+        <result property="userStatus" column="user_status" javaType="String"/>
+    </resultMap>
+
+    <select id="getUserInfo" resultMap="userInfo">
+        select a.user_id,a.info_id,a.user_name,a.user_email,a.user_gender,a.user_phone,a.user_status from user_info a where a.user_id = #{userId}
+    </select>
+
+</mapper>
